@@ -7,12 +7,3 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Parcial.Model
-{
-    public class Beneficiarios
-    {
-        public object IdBeneficiario { get; internal set; }
-        public object Nombre { get; internal set; }
-        public object Dui { get; internal set; }
-    }
-}

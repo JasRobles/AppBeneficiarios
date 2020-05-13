@@ -15,8 +15,7 @@ namespace Parcial.View
     public partial class frmAdministrador1 : Form
     {
 
-        Beneficiarios benef = new Beneficiarios();
-        DialogResult resultado;
+
         public frmAdministrador1()
         {
             InitializeComponent();
@@ -35,19 +34,20 @@ namespace Parcial.View
             using (Sistema_BeneficiarioEntities db = new Sistema_BeneficiarioEntities())
             {
 
-                var list = from B in db.Beneficiarios
+                var lista = from B in db.Beneficiarios
                            select new 
                            { 
-                             Id = B.IdBeneficiario,
-                             Nombre = B.Nombre, 
-                             Dui = B.Dui 
+                             ID = B.IdBeneficiario,
+                             NOMBRE = B.Nombre, 
+                             DUI = B.Dui 
                            };
 
-                dgvBeneficiarios.DataSource = list.ToList();
+                dgvBeneficiarios.DataSource = lista.ToList();
 
             }
 
         }
+
 
         public void limpiar()
         {
@@ -67,14 +67,11 @@ namespace Parcial.View
 
             {
 
+
                 using (Sistema_BeneficiarioEntities db = new Sistema_BeneficiarioEntities())
                 {
-                    benef.IdBeneficiario = txtId.Text;
-                    benef.Nombre = txtNombre.Text;
-                    benef.Dui = txtDui.Text;
-                    db.Beneficiarios.Add(benef);
-                    db.SaveChanges();
-                    CargarDatos();
+
+                    
 
 
                 }
@@ -89,7 +86,7 @@ namespace Parcial.View
 
         private void dgvBeneficiarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            string Id = dgvBeneficiarios.CurrentRow.Cells[0].Value.ToString();
             string nombre = dgvBeneficiarios.CurrentRow.Cells[1].Value.ToString();
             string dui = dgvBeneficiarios.CurrentRow.Cells[2].Value.ToString();
             txtDui.Enabled = true;

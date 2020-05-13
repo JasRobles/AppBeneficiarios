@@ -24,7 +24,7 @@ namespace Parcial.Model
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Beneficiarios> Beneficiarios { get; set; }
     }
 }
