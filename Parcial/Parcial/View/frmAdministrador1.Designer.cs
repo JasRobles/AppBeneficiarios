@@ -72,6 +72,7 @@
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // label1
             // 
@@ -137,6 +138,7 @@
             this.dgvBeneficiarios.ReadOnly = true;
             this.dgvBeneficiarios.Size = new System.Drawing.Size(703, 204);
             this.dgvBeneficiarios.TabIndex = 10;
+            this.dgvBeneficiarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBeneficiarios_CellContentClick_1);
             // 
             // ID
             // 
@@ -174,6 +176,7 @@
             this.Name = "frmAdministrador1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmAdministrador1";
+            this.Load += new System.EventHandler(this.frmAdministrador1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBeneficiarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -20,8 +20,10 @@ namespace Parcial.View
         {
             InitializeComponent();
 
-            CargarDatos();
+            
         }
+
+        public Beneficiarios benef = new Beneficiarios();
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -30,20 +32,16 @@ namespace Parcial.View
 
         public void CargarDatos()
         {
-
-            using (Sistema_BeneficiarioEntities db = new Sistema_BeneficiarioEntities())
+            dgvBeneficiarios.Rows.Clear();
+            using (Sistema_BeneficiarioEntities1 db = new Sistema_BeneficiarioEntities1())
             {
 
-                var lista = from B in db.Beneficiarios
-                           select new 
-                           { 
-                             ID = B.IdBeneficiario,
-                             NOMBRE = B.Nombre, 
-                             DUI = B.Dui 
-                           };
 
-                dgvBeneficiarios.DataSource = lista.ToList();
-
+                var Beneficiarios = db.Beneficiarios;
+                foreach (var iterarB in Beneficiarios)
+                {
+                    dgvBeneficiarios.Rows.Add(iterarB.IdBeneficiario, iterarB.Nombre, iterarB.Dui);
+                }
             }
 
         }
@@ -53,26 +51,26 @@ namespace Parcial.View
         {
             txtDui.Text = "";
             txtNombre.Text = "";
-            txtNombre.Enabled = false;
-            txtDui.Enabled = false;
-            btnActualizar.Enabled = false;
-            btnEliminar.Enabled = false;
+           
 
         }
 
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (txtId.Text != "" && txtNombre.Text != "" && txtDui.Text != "")
+            if (txtNombre.Text != "" && txtDui.Text != "")
 
             {
 
-
-                using (Sistema_BeneficiarioEntities db = new Sistema_BeneficiarioEntities())
+                using (Sistema_BeneficiarioEntities1 db = new Sistema_BeneficiarioEntities1())
                 {
 
-                    
-
+                    benef.Nombre = txtNombre.Text;
+                    benef.Dui = txtDui.Text;
+                    db.Beneficiarios.Add(benef);
+                    db.SaveChanges();
+                    CargarDatos();
+                    limpiar();
 
                 }
             }
@@ -86,22 +84,59 @@ namespace Parcial.View
 
         private void dgvBeneficiarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string Id = dgvBeneficiarios.CurrentRow.Cells[0].Value.ToString();
-            string nombre = dgvBeneficiarios.CurrentRow.Cells[1].Value.ToString();
-            string dui = dgvBeneficiarios.CurrentRow.Cells[2].Value.ToString();
-            txtDui.Enabled = true;
-            txtNombre.Enabled = true;
-            txtNombre.Text = nombre;
-            txtDui.Text = dui;
-            btnActualizar.Enabled = true;
-            btnEliminar.Enabled = true;
-            btnAgregar.Enabled = false;
+                      
 
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
 
+            using(Sistema_BeneficiarioEntities1 db = new Sistema_BeneficiarioEntities1())
+            {
+
+                string Id = dgvBeneficiarios.CurrentRow.Cells[0].Value.ToString();
+                int ID = int.Parse(Id);
+                benef = db.Beneficiarios.Where(VerificarId => VerificarId.IdBeneficiario == ID).First();
+                benef.Nombre = txtNombre.Text;
+                benef.Dui = txtDui.Text;
+                db.Entry(benef).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                
+            }
+            CargarDatos();
+            limpiar();
+        }
+
+        private void frmAdministrador1_Load(object sender, EventArgs e)
+        {
+            CargarDatos();
+            
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+
+            using ( Sistema_BeneficiarioEntities1 db = new Sistema_BeneficiarioEntities1())
+            {
+                string Id = dgvBeneficiarios.CurrentRow.Cells[0].Value.ToString();
+                benef = db.Beneficiarios.Find(int.Parse(Id));
+                db.Beneficiarios.Remove(benef);
+                db.SaveChanges();
+
+
+            }
+            CargarDatos();
+            limpiar();
+
+        }
+
+        private void dgvBeneficiarios_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            string nombre = dgvBeneficiarios.CurrentRow.Cells[1].Value.ToString();
+            string dui = dgvBeneficiarios.CurrentRow.Cells[2].Value.ToString();
+
+            txtNombre.Text = nombre;
+            txtDui.Text = dui;
         }
     }
 }

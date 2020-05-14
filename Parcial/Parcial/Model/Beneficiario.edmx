@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Sistema_BeneficiarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Sistema_BeneficiarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Beneficiarios">
           <Key>
             <PropertyRef Name="IdBeneficiario" />
@@ -16,13 +16,11 @@
         <EntityContainer Name="Sistema_BeneficiarioModelStoreContainer">
           <EntitySet Name="Beneficiarios" EntityType="Self.Beneficiarios" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Sistema_BeneficiarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="Sistema_BeneficiarioEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Beneficiarios" EntityType="Sistema_BeneficiarioModel.Beneficiarios" />
-        </EntityContainer>
         <EntityType Name="Beneficiarios">
           <Key>
             <PropertyRef Name="IdBeneficiario" />
@@ -31,18 +29,21 @@
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Dui" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityContainer Name="Sistema_BeneficiarioEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Beneficiarios" EntityType="Self.Beneficiarios" />
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Sistema_BeneficiarioModelStoreContainer" CdmEntityContainer="Sistema_BeneficiarioEntities">
+        <EntityContainerMapping StorageEntityContainer="Sistema_BeneficiarioModelStoreContainer" CdmEntityContainer="Sistema_BeneficiarioEntities1">
           <EntitySetMapping Name="Beneficiarios">
             <EntityTypeMapping TypeName="Sistema_BeneficiarioModel.Beneficiarios">
               <MappingFragment StoreEntitySet="Beneficiarios">
-                <ScalarProperty Name="Dui" ColumnName="Dui" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdBeneficiario" ColumnName="IdBeneficiario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Dui" ColumnName="Dui" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -13,10 +13,10 @@ namespace Parcial.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Sistema_BeneficiarioEntities : DbContext
+    public partial class Sistema_BeneficiarioEntities1 : DbContext
     {
-        public Sistema_BeneficiarioEntities()
-            : base("name=Sistema_BeneficiarioEntities")
+        public Sistema_BeneficiarioEntities1()
+            : base("name=Sistema_BeneficiarioEntities1")
         {
         }
     
@@ -24,7 +24,7 @@ namespace Parcial.Model
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<Beneficiarios> Beneficiarios { get; set; }
     }
 }

@@ -61,16 +61,23 @@
     <Compile Include="frmConsultar.Designer.cs">
       <DependentUpon>frmConsultar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Beneficiarios.cs" />
-    <Compile Include="Model\Sistema_Beneficiario.Context.cs">
+    <Compile Include="Model\Beneficiario.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Sistema_Beneficiario.Context.tt</DependentUpon>
+      <DependentUpon>Beneficiario.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Sistema_Beneficiario.Designer.cs">
+    <Compile Include="Model\Beneficiario.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Sistema_Beneficiario.edmx</DependentUpon>
+      <DependentUpon>Beneficiario.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Beneficiario.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Beneficiario.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Beneficiarios.cs">
+      <DependentUpon>Beneficiario.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,12 +111,12 @@
     <EmbeddedResource Include="View\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Sistema_Beneficiario.edmx">
+    <EntityDeploy Include="Model\Beneficiario.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Sistema_Beneficiario.Designer.cs</LastGenOutput>
+      <LastGenOutput>Beneficiario.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Sistema_Beneficiario.edmx.diagram">
-      <DependentUpon>Sistema_Beneficiario.edmx</DependentUpon>
+    <None Include="Model\Beneficiario.edmx.diagram">
+      <DependentUpon>Beneficiario.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -126,13 +133,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\Sistema_Beneficiario.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Sistema_Beneficiario.Context.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Model\Beneficiario.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Beneficiario.edmx</DependentUpon>
+      <LastGenOutput>Beneficiario.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\Beneficiario.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Beneficiario.edmx</DependentUpon>
+      <LastGenOutput>Beneficiario.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

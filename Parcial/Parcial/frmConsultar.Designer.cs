@@ -30,8 +30,10 @@
         {
             this.btnAdministrador = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDuiCons = new System.Windows.Forms.TextBox();
             this.btnConsultar = new System.Windows.Forms.Button();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblBeneficiario = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAdministrador
@@ -54,12 +56,13 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "CONSULTAR DUI";
             // 
-            // textBox1
+            // txtDuiCons
             // 
-            this.textBox1.Location = new System.Drawing.Point(238, 130);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(274, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtDuiCons.Location = new System.Drawing.Point(238, 130);
+            this.txtDuiCons.Name = "txtDuiCons";
+            this.txtDuiCons.Size = new System.Drawing.Size(274, 20);
+            this.txtDuiCons.TabIndex = 2;
+            this.txtDuiCons.TextChanged += new System.EventHandler(this.txtDuiCons_TextChanged);
             // 
             // btnConsultar
             // 
@@ -71,18 +74,39 @@
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(84, 249);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(143, 13);
+            this.lblNombre.TabIndex = 4;
+            this.lblNombre.Text = "NOMBRE DE LA PERSONA";
+            // 
+            // lblBeneficiario
+            // 
+            this.lblBeneficiario.AutoSize = true;
+            this.lblBeneficiario.Location = new System.Drawing.Point(274, 249);
+            this.lblBeneficiario.Name = "lblBeneficiario";
+            this.lblBeneficiario.Size = new System.Drawing.Size(182, 13);
+            this.lblBeneficiario.TabIndex = 5;
+            this.lblBeneficiario.Text = "ERES BENEFICIARIO DE LOS $300";
+            // 
             // frmConsultar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(749, 307);
+            this.Controls.Add(this.lblBeneficiario);
+            this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnConsultar);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDuiCons);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAdministrador);
             this.Name = "frmConsultar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmConsultar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -92,8 +116,10 @@
 
         private System.Windows.Forms.Button btnAdministrador;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDuiCons;
         private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblBeneficiario;
     }
 }
 
